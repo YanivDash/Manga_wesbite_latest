@@ -1,0 +1,49 @@
+.subHeader_container {
+  color: #fff;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #6f42c1;
+  text-decoration: none;
+}
+.subHeader_container .subHeader_left_links {
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 20%;
+}
+.subHeader_container .subHeader_right_links {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.subHeader_container .subHeader_Light_control {
+  border-left: 2px solid grey;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 59px;
+}
+.subHeader_container .subHeader_icons {
+  display: flex;
+  justify-content: center;
+  font-size: 21px;
+}
+.subHeader_container a :hover {
+  color: aqua;
+}
+
+@media screen and (max-width: 1000px) {
+  .subHeader_container {
+    display: none;
+  }
+}/*# sourceMappingURL=subHeader.css.map */
