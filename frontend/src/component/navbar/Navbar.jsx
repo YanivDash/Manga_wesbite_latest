@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbarCss/navbar.css";
-// import "../../../../garbage/navbar.css";
 import { RiLightbulbFlashLine, RiLightbulbFlashFill } from "react-icons/ri";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
@@ -10,6 +10,13 @@ const Navbar = () => {
   const [search, setSearch] = useState(false);
   const [light, setLight] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [input, setInput] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleInput = () => {
+    navigate("/searched", { state: { data: input } });
+  };
 
   return (
     <div className='navbar_container navbar_icons'>
@@ -31,16 +38,41 @@ const Navbar = () => {
             <Link to='/mostViewed'>
               <li className='navbar_manga_item'>Most-Viewed</li>
             </Link>
-            <Link>
+            <Link to='/latest'>
               <li className='navbar_manga_item'>Latest</li>
             </Link>
           </ul>
         </div>
         <div className='navbar_right'>
           <div>
-            <p onClick={() => setSearch(!search)}>
-              <IoSearchSharp className='navbar_icons' />
-            </p>
+            <div className='navbar_search'>
+              <input
+                required
+                type='text'
+                placeholder='Enter manga name'
+                name='searchInput'
+                onChange={(e) => setInput(e.target.value)}
+              />
+              <p>
+                <IoSearchSharp
+                  onClick={() => {
+                    console.log(search);
+                    if (input) {
+                      handleInput();
+                    }
+                    if (search) {
+                      console.log(
+                        document.getElementById("small_screen_input")
+                      );
+                      document.getElementById("small_screen_input").focus();
+                    }
+
+                    setSearch(!search);
+                  }}
+                  className='navbar_icons'
+                />
+              </p>
+            </div>
           </div>
           <p
             className={light ? "navbar_light" : undefined}
@@ -57,9 +89,11 @@ const Navbar = () => {
       </div>
       {search ? (
         <input
+          id='small_screen_input'
           className='navbar_search_input'
           type='text'
           placeholder='enter manga...'
+          onChange={(e) => setInput(e.target.value)}
         />
       ) : undefined}
       <div
@@ -82,8 +116,9 @@ const Navbar = () => {
               <Link to='/mostViewed'>
                 <li className='navbar_mobile_manga_item'>Most-Viewed</li>
               </Link>
-
-              <li className='navbar_mobile_manga_item'>Latest</li>
+              <Link to='/latest'>
+                <li className='navbar_mobile_manga_item'>Latest</li>
+              </Link>
             </ul>
           </div>
           <div className='nvabar_mobile_manga_type'>

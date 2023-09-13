@@ -70,6 +70,35 @@
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
+
+      .navbar_search {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1em;
+        input {
+          padding: 10px;
+          width: 400px;
+          font-size: 0.9em;
+          color: white;
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+          }
+          &:focus {
+            background-color: white;
+            color: black;
+            &::placeholder {
+              color: grey;
+            }
+          }
+        }
+        @media screen and (max-width: 1000px) {
+          input {
+            display: none;
+          }
+        }
+      }
       p {
         font-weight: bolder;
         padding: 0;
@@ -120,7 +149,11 @@
       outline: none;
     }
   }
-
+  @media screen and (min-width: 1000px) {
+    .navbar_search_input {
+      display: none;
+    }
+  }
   .navbar_mobile {
     display: none;
     flex-direction: column;
@@ -167,7 +200,7 @@
       width: 266px;
       height: 100vh;
       padding-left: 30px;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 1);
 
       .navbar_mobile_manga_lists {
         padding: 0;
@@ -192,7 +225,7 @@
   }
   .navbar_mobile_show {
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     transform: translateX(0);
     transition: all 0.3s ease-in-out;
   }

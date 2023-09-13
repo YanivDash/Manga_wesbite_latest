@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allMangaAdd } from "./reducers/allMangaReducer";
 import "./styles/appCss/app.css";
+import LatestManga from "./component/latest/LatestManga";
+import Searched from "./component/seached/Searched";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +50,8 @@ const App = () => {
           }
         />
         <Route exact path='/mostViewed' element={<MostViewed />} />
+        <Route exact path='/latest' element={<LatestManga />} />
+        <Route exact path='/searched' element={<Searched />} />
         <Route exact path='/manga/:id' element={<MangaDetail />} />
         <Route exact path='/manga/:id/:chapter' element={<MangaChapter />} />
         <Route exact path='/createManga' element={<CreateManga />} />

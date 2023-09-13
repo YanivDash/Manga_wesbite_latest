@@ -6,7 +6,7 @@ import "../../styles/mangaDetailsCss/mangaDetails.css";
 const MangaDetail = () => {
   let urlParams = useParams();
   let urlId = urlParams.id;
-
+  window.scroll(0, 0);
   const mangas = useSelector((state) => state.allManga);
   let data = mangas.allMangas;
 

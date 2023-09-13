@@ -2,6 +2,7 @@ import { uploadManga } from "../../../apiCall";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../../styles/createMangaCss/createManga.css";
 
 const CreateManga = () => {
   const [auth, setAuth] = useState(false);
@@ -19,7 +20,8 @@ const CreateManga = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8061/uploadManga")
+      .get(`${import.meta.env.VITE_BASE_URL}/uploadManga`)
+
       .then((res) => {
         if (res.data.Status === "success") {
           setAuth(true);
@@ -34,7 +36,8 @@ const CreateManga = () => {
 
   const handleDelete = () => {
     axios
-      .get("http://localhost:8061/logout")
+      .get(`${import.meta.env.VITE_BASE_URL}/logout`)
+
       .then(() => {
         location.reload(true);
       })
@@ -51,117 +54,107 @@ const CreateManga = () => {
   };
 
   return (
-    <div className='container mt-4'>
+    <div>
       {auth ? (
-        <div className='d-flex justify-content-center align-items-center bg-primary vh-100 vw-100'>
-          <div className='bg-white p-3 rounded '>
-            <h2>sign up</h2>
-            <form className='container' onSubmit={handleSubmit}>
-              <div className='mb-3'>
-                <label htmlFor='websiteName'>
-                  {" "}
-                  <strong>websiteName</strong>
-                </label>
-                <input
-                  required
-                  type='text'
-                  placeholder='Enter websiteName'
-                  name='websiteName'
-                  className='form-control rounded-0'
-                  onChange={(e) =>
-                    setValues({ ...values, websiteName: e.target.value })
-                  }
-                />
-              </div>
-
-              <div className='mb-3'>
-                <label htmlFor='mangaName'>
-                  {" "}
-                  <strong>mangaName</strong>
-                </label>
-                <input
-                  required
-                  type='text'
-                  placeholder='Enter mangaName'
-                  name='mangaName'
-                  className='form-control rounded-0'
-                  onChange={(e) =>
-                    setValues({ ...values, mangaName: e.target.value })
-                  }
-                />
-              </div>
-
-              <div className='mb-3'>
-                <label htmlFor='mangaCover'>
-                  {" "}
-                  <strong>mangaCover</strong>
-                </label>
-                <input
-                  required
-                  type='text'
-                  placeholder='Enter mangaCover'
-                  name='mangaCover'
-                  className='form-control rounded-0'
-                  onChange={(e) =>
-                    setValues({ ...values, mangaCover: e.target.value })
-                  }
-                />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='mangaLink'>
-                  {" "}
-                  <strong>mangaLink</strong>
-                </label>
-                <input
-                  required
-                  type='text'
-                  placeholder='Enter mangaLink'
-                  name='mangaLink'
-                  className='form-control rounded-0'
-                  onChange={(e) =>
-                    setValues({ ...values, mangaLink: e.target.value })
-                  }
-                />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='mangaClass'>
-                  {" "}
-                  <strong>mangaClass</strong>
-                </label>
-                <input
-                  required
-                  type='text'
-                  placeholder='Enter mangaClass'
-                  name='mangaClass'
-                  className='form-control rounded-0'
-                  onChange={(e) =>
-                    setValues({ ...values, mangaClass: e.target.value })
-                  }
-                />
-              </div>
-
-              <button type='submit' className='btn btn-success rounded-0 w-100'>
-                Submit Manga
-              </button>
-            </form>
+        <div className='yesAuth_container'>
+          <div className='chapterClasses'>
+            <h2>chapterNumberHere</h2>
+            <p>.reading-content img</p>
           </div>
-          <div>
-            <h3>you are Authorized {name}</h3>
-            <button className='btn btn-danger' onClick={handleDelete}>
-              Logout
-            </button>
+
+          <form className='upload_form_container' onSubmit={handleSubmit}>
+            <div className='upload_form_item'>
+              <label htmlFor='websiteName'>
+                {" "}
+                <strong>websiteName</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter websiteName'
+                name='websiteName'
+                onChange={(e) =>
+                  setValues({ ...values, websiteName: e.target.value })
+                }
+              />
+            </div>
+
+            <div className='upload_form_item'>
+              <label htmlFor='mangaName'>
+                {" "}
+                <strong>mangaName</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter mangaName'
+                name='mangaName'
+                onChange={(e) =>
+                  setValues({ ...values, mangaName: e.target.value })
+                }
+              />
+            </div>
+
+            <div className='upload_form_item'>
+              <label htmlFor='mangaCover'>
+                {" "}
+                <strong>mangaCover</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter mangaCover'
+                name='mangaCover'
+                onChange={(e) =>
+                  setValues({ ...values, mangaCover: e.target.value })
+                }
+              />
+            </div>
+            <div className='upload_form_item'>
+              <label htmlFor='mangaLink'>
+                {" "}
+                <strong>mangaLink</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter mangaLink'
+                name='mangaLink'
+                onChange={(e) =>
+                  setValues({ ...values, mangaLink: e.target.value })
+                }
+              />
+            </div>
+            <div className='upload_form_item'>
+              <label htmlFor='mangaClass'>
+                {" "}
+                <strong>mangaClass</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter mangaClass'
+                name='mangaClass'
+                onChange={(e) =>
+                  setValues({ ...values, mangaClass: e.target.value })
+                }
+              />
+            </div>
+            <button type='submit'>Submit Manga</button>
+          </form>
+          <div className='authAdmin_container'>
+            <h3>
+              Admin Name : <span>{name}</span>{" "}
+            </h3>
+            <button onClick={handleDelete}>Logout</button>
           </div>
         </div>
       ) : (
-        <div>
-          <h3>{message}</h3>
-          <h3>Login now</h3>
-          <Link to='/login' className='btn btn-primary'>
-            Login
-          </Link>
-          <p className='mt-2 mb-2'>dont have a account ? </p>
-          <Link to='/register' className='btn btn-primary'>
-            Create Account
+        <div className='notAuth_container'>
+          <h1>{message}</h1>
+          <h2>Login now</h2>
+          <Link to='/login'>
+            <button>Login</button>
           </Link>
         </div>
       )}

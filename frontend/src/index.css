@@ -22,13 +22,8 @@ a {
 
 body {
   margin: 0;
-  /* display: flex; */
-  place-items: center;
 
   max-width: 1600px;
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 h1 {

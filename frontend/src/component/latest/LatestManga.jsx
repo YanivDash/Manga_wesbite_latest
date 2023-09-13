@@ -2,16 +2,20 @@ import MangaCard from "../home/MangaCard";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-const MostViewed = () => {
+const LatestManga = () => {
   const [loading, setLoading] = useState(false);
   const mangas = useSelector((state) => state.allManga);
-
   let data = mangas.allMangas;
   if (!data) setLoading(true);
   const sortedData = [...data];
 
   // Sort the new array based on the "id" property
-  sortedData.sort((a, b) => b.totalViews - a.totalViews);
+  sortedData.sort((a, b) => {
+    const timestampA = new Date(a.dateUpdate);
+    const timestampB = new Date(b.dateUpdate);
+
+    return timestampB - timestampA;
+  });
 
   return (
     <div className='home_container'>
@@ -30,4 +34,4 @@ const MostViewed = () => {
   );
 };
 
-export default MostViewed;
+export default LatestManga;
