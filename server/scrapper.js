@@ -3,7 +3,6 @@ import cheerio from "cheerio";
 
 const scraper = async (url, chapClass) => {
   const data = [];
-  console.log(url);
 
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
@@ -47,27 +46,22 @@ const scrapTotal = async (mangaLink, mangaClass) => {
     if (imageUrl) {
       newUrl = typeUrl.replace(typeRegex, `${match + leap}`);
       match = match + leap;
-      console.log(match);
     } else if (leap === 1000) {
       newUrl = typeUrl.replace(typeRegex, `${match - 1000}`);
       match = match - 1000;
       leap = 500;
-      console.log("leap 500");
     } else if (leap === 500) {
       newUrl = typeUrl.replace(typeRegex, `${match - 500}`);
       leap = 100;
       match = match - 500;
-      console.log("leap 100");
     } else if (leap === 100) {
       newUrl = typeUrl.replace(typeRegex, `${match - 100}`);
       leap = 10;
       match = match - 100;
-      console.log("leap 10");
     } else if (leap === 10) {
       newUrl = typeUrl.replace(typeRegex, `${match - 10}`);
       leap = 1;
       match = match - 10;
-      console.log("leap 1");
     } else {
       totalChapter = match - 1;
       break;
@@ -116,5 +110,4 @@ const updateChapter = async (mangaLink, mangaClass, totalChapter) => {
   console.log({ total: currentTotalChapter });
   return currentTotalChapter;
 };
-
 export { scraper, scrapTotal, updateChapter };

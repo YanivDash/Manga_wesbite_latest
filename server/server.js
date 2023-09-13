@@ -160,7 +160,11 @@ const chapterUpdate = async () => {
         mangaClass,
         totalChapter
       );
-      let result = await updateTotalChapter({ id, newTotalChapter });
+      let result = await updateTotalChapter({
+        id,
+        newTotalChapter,
+        totalChapter,
+      });
     });
   } catch (error) {
     console.error("Error:", error);
